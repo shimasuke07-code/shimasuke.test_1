@@ -1,0 +1,9 @@
+/* 左サイドバー内のキャラクター画像 */
+.avatar {
+  width: 100px;     /* 幅 */
+  height: 100px;    /* 高さ */
+  border-radius: 50%; /* 丸くする */
+  border: 2px solid white; /* 枠線 */
+  display: block;
+  margin: 0 auto 10px auto; /* 上下の余白 */
+}
