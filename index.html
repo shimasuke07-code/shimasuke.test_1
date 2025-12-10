@@ -8,5 +8,23 @@
     <h1>こんにちは！</h1>
     <p>これは最初のテストページです！</p>
     <h1 style="color:bule;">1230'creatorのツール</h1>
+        <h1>変数を変えるテスト</h1>
+
+    <!-- 変数の値を表示する場所 -->
+    <p id="number">0</p>
+
+    <!-- ボタン -->
+    <button onclick="addNumber()">＋1する！</button>
+
+    <script>
+      // 変数（数字）
+      let count = 0;
+
+      // ボタンを押したら実行される関数
+      function addNumber() {
+        count = count + 1;       // 変数を変える
+        document.getElementById("number").innerText = count; // 画面に反映
+      }
+    </script>
   </body>
 </html>
