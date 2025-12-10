@@ -1,32 +1,122 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #1e1e2f;
-  color: white;
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(145deg, #0a0a0a, #1c1c1c);
+  color: #ffffff;
   display: flex;
-  min-height: 100vh; /* 画面いっぱいに広げる */
+  min-height: 100vh;
+  transition: all 0.3s;
 }
 
-/* 左サイドバー */
-.sidebar-left {
-  flex: 0 0 200px; /* 固定幅200px */
-  background-color: #2c2c4a;
+.sidebar-left, .sidebar-right {
+  flex: 0 0 200px;
+  background-color: rgba(20, 20, 40, 0.9);
   padding: 20px;
-  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+  border: 1px solid rgba(0,255,255,0.2);
 }
 
-/* 中央メイン */
 .main {
-  flex: 1; /* 残りのスペースを全部使う */
+  flex: 1;
   padding: 20px;
   box-sizing: border-box;
-  min-width: 300px; /* 最低幅を設定して細長くならないようにする */
+  min-width: 300px;
 }
 
-/* 右サイドバー */
-.sidebar-right {
-  flex: 0 0 200px; /* 固定幅200px */
-  background-color: #2c2c4a;
-  padding: 20px;
-  box-sizing: border-box;
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: block;
+  margin: 0 auto 10px auto;
+  transition: all 0.3s;
+}
+
+.avatar.level-up {
+  animation: glow 1.2s ease infinite alternate;
+}
+@keyframes glow {
+  from { box-shadow: 0 0 10px cyan; }
+  to { box-shadow: 0 0 30px cyan; }
+}
+
+.avatar-select img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.avatar-select img:hover {
+  transform: scale(1.1);
+  border-color: cyan;
+}
+
+.task {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  border-left: 5px solid #0ff;
+}
+.task.done {
+  opacity: 0.6;
+  text-decoration: line-through;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+button {
+  background: #111;
+  color: #0ff;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 0 0 5px #0ff;
+  transition: all 0.2s;
+}
+button:hover {
+  background: #0ff;
+  color: #111;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+  transform: scale(1.05);
+}
+
+h2, h3 {
+  color: #0ff;
+  text-shadow: 0 0 5px cyan;
+}
+
+.toggle-btn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: #222244;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  body { flex-direction: column; }
+  .toggle-btn { display: block; }
+  .sidebar-left, .sidebar-right {
+    width: 100%;
+    display: none;
+    transform: translateY(-100%);
+  }
+  .sidebar-left.active, .sidebar-right.active { display: block; transform: translateY(0); }
+  .main { width: 100%; }
 }
