@@ -2,25 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>テストページ</title>
+    <title>1230'creatorのサイト</title>
   </head>
-  <body>
-    <h1>こんにちは！</h1>
-    <p>これは最初のテストページです！</p>
-    <h1 style="color:bule;">1230'creatorのツール</h1>
-        <h1>変数を変えるテスト</h1>
+  <body style="background-color: black; color: white; font-family: Arial, sans-serif;">
 
-    <p id="number">0</p>
+    <!-- 上のバー -->
+    <div style="background-color: #222; padding: 10px;">
+      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ホーム</a>
+      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ゲーム</a>
+      <a href="#" style="color: white; text-decoration: none;">ツール</a>
+    </div>
 
-    <button onclick="addNumber()">＋1する！</button>
+    <!-- タイトル -->
+    <h1 style="text-align: center; margin-top: 50px;">1230'creatorのゲーム</h1>
 
-    <script>
-      let count = 0;
+    <!-- Scratchゲーム -->
+    <div style="text-align: center; margin-top: 20px;">
+      <iframe src="https://scratch.mit.edu/projects/1252404914/embed" 
+              allowtransparency="true" 
+              width="485" height="402" 
+              frameborder="0" scrolling="no" 
+              allowfullscreen>
+      </iframe>
+    </div>
 
-      function addNumber() {
-        count = count + 1; 
-        document.getElementById("number").innerText = count;
-      }
-    </script>
   </body>
+</html>
+
 </html>
