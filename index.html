@@ -2,31 +2,55 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>1230'creatorのサイト</title>
+    <title>1230'creatorのページ</title>
+    <style>
+      body { background-color: black; color: white; font-family: Arial, sans-serif; }
+      #taskList { margin-top: 20px; }
+      .task { margin: 5px 0; }
+      .done { text-decoration: line-through; color: gray; }
+      input, button { padding: 5px; margin: 5px; }
+    </style>
   </head>
-  <body style="background-color: black; color: white; font-family: Arial, sans-serif;">
+  <body>
+    <h1>タスク管理</h1>
 
-    <!-- 上のバー -->
-    <div style="background-color: #222; padding: 10px;">
-      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ホーム</a>
-      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ゲーム</a>
-      <a href="#" style="color: white; text-decoration: none;">ツール</a>
-    </div>
+    <!-- タスク追加 -->
+    <input type="text" id="taskInput" placeholder="やることを入力">
+    <button onclick="addTask()">追加</button>
 
-    <!-- タイトル -->
-    <h1 style="text-align: center; margin-top: 50px;">1230'creatorのゲーム</h1>
+    <!-- タスク表示 -->
+    <div id="taskList"></div>
 
-    <!-- Scratchゲーム -->
-    <div style="text-align: center; margin-top: 20px;">
-      <iframe src="https://scratch.mit.edu/projects/1252404914/embed" 
-              allowtransparency="true" 
-              width="485" height="402" 
-              frameborder="0" scrolling="no" 
-              allowfullscreen>
-      </iframe>
-    </div>
+    <script>
+      let tasks = [];
 
+      function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskText = taskInput.value;
+        if(taskText === "") return;
+
+        tasks.push({ text: taskText, done: false });
+        taskInput.value = "";
+        renderTasks();
+      }
+
+      function toggleDone(index) {
+        tasks[index].done = !tasks[index].done;
+        renderTasks();
+      }
+
+      function renderTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = "";
+        tasks.forEach((task, index) => {
+          const taskDiv = document.createElement('div');
+          taskDiv.className = "task" + (task.done ? " done" : "");
+          taskDiv.innerHTML = `
+            <span onclick="toggleDone(${index})">${task.text}</span>
+          `;
+          taskList.appendChild(taskDiv);
+        });
+      }
+    </script>
   </body>
-</html>
-
 </html>
