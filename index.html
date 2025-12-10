@@ -2,61 +2,55 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>1230'creatorのページ</title>
+    <title>1230'creatorのホームページ</title>
     <style>
-      body { background-color: black; color: white; font-family: Arial, sans-serif; }
-      #taskList { margin-top: 20px; }
-      .task { margin: 5px 0; }
-      .done { text-decoration: line-through; color: gray; }
-      input, button { padding: 5px; margin: 5px; }
+      body {
+        background-color: black; /* 背景を黒にする */
+        color: white;            /* 文字を白にする */
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      /* 上のバーのデザイン */
+      .navbar {
+        background-color: #222;
+        padding: 10px;
+        display: flex;
+        gap: 20px;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+      .content {
+        text-align: center;
+        margin-top: 30px;
+      }
     </style>
   </head>
   <body>
-      <div style="background-color: #222; padding: 10px;">
-      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ホーム</a>
-      <a href="#" style="color: white; margin-right: 20px; text-decoration: none;">ゲーム</a>
-      <a href="#" style="color: white; text-decoration: none;">ツール</a>
+
+    <!-- 上のバー -->
+    <div class="navbar">
+      <a href="#">ホーム</a>
+      <a href="#">ゲーム</a>
+      <a href="#">ツール</a>
     </div>
 
-    <h1>タスク管理</h1>
+    <!-- タイトル -->
+    <h1>1230'creatorのホームページ</h1>
 
-    <!-- タスク追加 -->
-    <input type="text" id="taskInput" placeholder="やることを入力">
-    <button onclick="addTask()">追加</button>
+    <!-- メインコンテンツ -->
+    <div class="content">
+      <p>ここにゲームやツールを置いていこう！</p>
+    </div>
 
-    <!-- タスク表示 -->
-    <div id="taskList"></div>
+  </body>
+</html>
 
-    <script>
-      let tasks = [];
-
-      function addTask() {
-        const taskInput = document.getElementById('taskInput');
-        const taskText = taskInput.value;
-        if(taskText === "") return;
-
-        tasks.push({ text: taskText, done: false });
-        taskInput.value = "";
-        renderTasks();
-      }
-
-      function toggleDone(index) {
-        tasks[index].done = !tasks[index].done;
-        renderTasks();
-      }
-
-      function renderTasks() {
-        const taskList = document.getElementById('taskList');
-        taskList.innerHTML = "";
-        tasks.forEach((task, index) => {
-          const taskDiv = document.createElement('div');
-          taskDiv.className = "task" + (task.done ? " done" : "");
-          taskDiv.innerHTML = `
-            <span onclick="toggleDone(${index})">${task.text}</span>
-          `;
-          taskList.appendChild(taskDiv);
-        });
-      }
     </script>
   </body>
 </html>
