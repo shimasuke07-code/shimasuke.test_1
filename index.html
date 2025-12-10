@@ -1,118 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Habitica風タスク管理</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1e1e2f; /* 暗めの背景 */
-      color: white;
-      display: flex;
-    }
-
-   /* 左サイドバー */
-    <div class="sidebar-left">
-      <h2>キャラクター</h2>
-      <img src="avatar.png" alt="キャラクター" class="avatar">
-      <p>名前: たろう</p>
-      <p>レベル: <span id="level">1</span></p>
-      <p>HP: 100</p>
-      <p>経験値: <span id="exp">0/50</span></p>
-    </div>
-
-
-    /* 中央メイン */
-    .main {
-      flex: 1;
-      padding: 20px;
-    }
-
-    /* 右サイドバー */
-    .sidebar-right {
-      width: 200px;
-      background-color: #2c2c4a;
-      padding: 20px;
-      height: 100vh;
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    .task {
-      background-color: #44446a;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .task.done {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-  </style>
+  <title>TaskQuest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰ メニュー</button>
 
-  <!-- 左サイドバー -->
   <div class="sidebar-left">
     <h2>キャラクター</h2>
-    <p>レベル: 1</p>
+    <img src="images/avatar1.png" alt="キャラクター" class="avatar" id="avatar">
+    <p>名前: <span id="username">たろう</span></p>
+    <p>レベル: <span id="level">1</span></p>
     <p>HP: 100</p>
-    <p>経験値: 0</p>
+    <p>経験値: <span id="exp">0/50</span></p>
+    <h3>アバター変更</h3>
+    <div class="avatar-select">
+      <img src="images/avatar1.png" onclick="changeAvatar(0)">
+      <img src="images/avatar2.png" onclick="changeAvatar(1)">
+      <img src="images/avatar3.png" onclick="changeAvatar(2)">
+    </div>
   </div>
 
-  <!-- 中央メイン -->
   <div class="main">
     <h2>今日のタスク</h2>
-    <div id="taskList">
-      <!-- タスクはここに追加 -->
-    </div>
+    <div id="taskList"></div>
+
     <input type="text" id="taskInput" placeholder="新しいタスク">
+    <select id="categorySelect">
+      <option value="習慣">⚔️ 習慣</option>
+      <option value="今日">🛡️ 今日</option>
+      <option value="やること">💎 やること</option>
+    </select>
     <button onclick="addTask()">追加</button>
   </div>
 
-  <!-- 右サイドバー -->
   <div class="sidebar-right">
     <h2>ポイント</h2>
     <p id="points">0</p>
   </div>
 
-<script>
-  let tasks = [];
-  let points = 0;
-
-  function addTask() {
-    const input = document.getElementById('taskInput');
-    if(input.value === "") return;
-    tasks.push({ text: input.value, done: false });
-    input.value = "";
-    renderTasks();
-  }
-
-  function toggleDone(index) {
-    tasks[index].done = !tasks[index].done;
-    if(tasks[index].done) points += 10; // 完了でポイント追加
-    else points -= 10;
-    document.getElementById('points').innerText = points;
-    renderTasks();
-  }
-
-  function renderTasks() {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = "";
-    tasks.forEach((task, i) => {
-      const div = document.createElement('div');
-      div.className = "task" + (task.done ? " done" : "");
-      div.innerText = task.text;
-      div.onclick = () => toggleDone(i);
-      taskList.appendChild(div);
-    });
-  }
-</script>
-
+  <script src="js/script.js"></script>
 </body>
 </html>
