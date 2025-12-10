@@ -1,61 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>1230'creatorのホームページ</title>
-  <style>
-    body { background-color: black; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
-    input { padding: 5px; margin: 5px; }
-    button { padding: 5px 10px; }
-    #message { margin-top: 20px; }
-    #mainContent { display: none; } /* 初めは非表示 */
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Googleログインデモ</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body style="text-align:center; padding-top:50px;">
 
-  <!-- ログインフォーム -->
-  <div id="loginForm">
-    <h1>ログインしてね</h1>
-    <input type="text" id="username" placeholder="ユーザー名"><br>
-    <input type="password" id="password" placeholder="パスワード"><br>
-    <button onclick="login()">ログイン</button>
-    <div id="message"></div>
-  </div>
+    <h1>Googleアカウントでログイン</h1>
 
-  <!-- ログイン後のホームページ -->
-  <div id="mainContent">
-    <div class="navbar" style="background-color:#222; padding:10px; margin-bottom:20px;">
-      <a href="#" style="color:white; margin-right:20px; text-decoration:none;">ホーム</a>
-      <a href="#" style="color:white; margin-right:20px; text-decoration:none;">ゲーム</a>
-      <a href="#" style="color:white; text-decoration:none;">ツール</a>
+    <!-- Googleログインボタン -->
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID"
+         data-callback="handleCredentialResponse">
     </div>
 
-    <h1>1230'creatorのホームページ</h1>
-    <p>ログイン成功！ここからコンテンツを表示できます✨</p>
-  </div>
+    <div class="g_id_signin"></div>
 
-<script>
-  // 正しいユーザー名とパスワード
-  const correctUsername = "1230creator";
-  const correctPassword = "12345";
-
-  function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
-
-    if(username === correctUsername && password === correctPassword) {
-      message.innerHTML = "ログイン成功！🎉";
-      document.getElementById("loginForm").style.display = "none"; // フォームを消す
-      document.getElementById("mainContent").style.display = "block"; // ホームページを表示
-    } else {
-      message.innerHTML = "ユーザー名かパスワードが違います";
-    }
-  }
-</script>
-
-</body>
-</html
+    <script>
+      function handleCredentialResponse(response) {
+        // response.credential にユーザー情報が入る
+        console.log("Googleから返ってきた情報:", response.credential);
+        alert("ログイン成功！🎉");
+        // ここでホームページを表示するなどの処理を書ける
+      }
     </script>
+
   </body>
 </html>
